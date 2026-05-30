@@ -1,0 +1,64 @@
+# ⚡ PowerShell Install Cheat Sheet
+
+---------------------------------------------------------------------------
+---------------------------------------------------------------------------
+| Command                              | Meaning                              | Example                              |
+---------------------------------------------------------------------------
+| brew install --cask powershell       | Install PowerShell on macOS (brew)   | brew install --cask powershell       |
+| pwsh -v                              | Check installed version              | pwsh -v                              |
+| pwsh                                 | Launch PowerShell                    | pwsh                                 |
+| brew upgrade powershell --cask       | Update PowerShell on macOS           | brew upgrade powershell --cask       |
+| brew uninstall --cask powershell     | Uninstall on macOS                   | brew uninstall --cask powershell     |
+| sudo apt install powershell          | Install on Ubuntu/Debian (repo)      | sudo apt install powershell          |
+| sudo dpkg -i powershell_*.deb &&     | Install from .deb file               | sudo dpkg -i powershell_7.*_amd64.deb|
+| sudo apt -f install                  | (fix deps after dpkg)                | sudo apt -f install                  |
+| sudo dnf install powershell          | Install on Fedora/RHEL/CentOS        | sudo dnf install powershell          |
+| sudo rpm -Uvh powershell-*.rpm       | Install from rpm file                | sudo rpm -Uvh powershell-7.*.rpm     |
+| sudo zypper install ./powershell-*.rpm| Install on openSUSE (rpm)            | sudo zypper install ./powershell-7.*.rpm |
+| sudo snap install powershell --classic| Install via Snap (many distros)      | sudo snap install powershell --classic |
+| sudo tar -xzf powershell-*-linux-x64.| Extract portable tarball             | sudo tar -xzf powershell-7.*-linux-  |
+| tar.gz -C /opt/microsoft/powershell/7|                                      | x64.tar.gz -C /opt/microsoft/.../7   |
+| sudo ln -sf /opt/microsoft/powershell| Add pwsh to PATH (tarball)           | sudo ln -sf /opt/.../7/pwsh          |
+| /7/pwsh /usr/local/bin/pwsh          |                                      | /usr/local/bin/pwsh                  |
+| sudo apt remove powershell           | Uninstall on Ubuntu/Debian           | sudo apt remove powershell           |
+| sudo dnf remove powershell           | Uninstall on Fedora/RHEL/CentOS      | sudo dnf remove powershell           |
+---------------------------------------------------------------------------
+
+# 📑 Common Patterns
+
+# macOS (Homebrew install)
+brew update
+brew install --cask powershell
+pwsh -v
+
+# Ubuntu/Debian (add MS repo, then install)
+sudo apt-get update
+sudo apt-get install -y wget apt-transport-https software-properties-common
+wget -q https://packages.microsoft.com/config/ubuntu/$(lsb_release -rs)/packages-microsoft-prod.deb
+sudo dpkg -i packages-microsoft-prod.deb
+sudo apt-get update
+sudo apt-get install -y powershell
+pwsh -v
+
+# Fedora/RHEL/CentOS
+sudo dnf install -y powershell
+pwsh -v
+
+# openSUSE (rpm) OR Snap
+sudo zypper install ./powershell-7.*.rpm
+# OR
+sudo snap install powershell --classic
+
+# Portable tarball (any Linux)
+sudo mkdir -p /opt/microsoft/powershell/7
+sudo tar -xzf powershell-*-linux-x64.tar.gz -C /opt/microsoft/powershell/7
+sudo ln -sf /opt/microsoft/powershell/7/pwsh /usr/local/bin/pwsh
+pwsh -v
+
+# Tips
+• Cross-platform PowerShell is `pwsh` (7+). Windows PowerShell 5.1 is Windows-only.
+• Prefer repo installs (brew/apt/dnf/zypper) for easy updates.
+• If `pwsh` isn’t found after rpm/tarball, create the symlink to `/usr/local/bin/pwsh`.
+• `snap install powershell --classic` works on many distros when native repos aren’t available.
+---------------------------------------------------------------------------
+

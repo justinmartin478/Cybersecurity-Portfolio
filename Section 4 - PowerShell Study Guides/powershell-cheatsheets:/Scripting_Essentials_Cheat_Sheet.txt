@@ -1,0 +1,144 @@
+⚡️ PowerShell Scripting Essentials — Cheat Sheet
+
+Command / Syntax                    | Meaning                                          | Example
+------------------------------------|--------------------------------------------------|-----------------------------------------------
+Get-Help Name[-Detailed|-Online]    | Built-in help for a cmdlet/function              | Get-Help Get-Process -Detailed
+Verb-Noun [-Parameter value]        | Cmdlet naming pattern                            | Get-Service -Name spooler
+$var = value                        | Create/assign variable                           | $user = "Justin"
+$( … )                              | Subexpression (evaluate expression in a string)  | "Now: $(Get-Date)"
+"double quotes $expand"             | Interpolated string (variables/$(… ) expand)     | "Hello $user"
+'single quotes $literal'            | Literal string (no expansion)                    | 'Hello $user'
+@' … '@ / @" … "@                   | Here-string (multi-line text)                    | @'line1\nline2'@
+Write-Output                        | Send objects to pipeline (preferred)             | Write-Output $user
+Write-Host                          | Print to screen only (non-pipeline)              | Write-Host "Hi" -ForegroundColor Cyan
+# comment                           | Line comment                                     | # this is a comment
+` (backtick)                        | Escape / line continuation (avoid when possible) | "quote`"d"
+-join / -split                      | Join or split strings                            | "a","b" -join "+"
+-f (format operator)                | Composite format strings                          | "{0:yyyy-MM-dd}" -f (Get-Date)
+$PSVersionTable.PSVersion           | Show PowerShell version                          | $PSVersionTable
+
+------------------------------------------------------
+
+⚡️ Pipeline & Object Filters
+
+Command/Syntax                      | Meaning                                          | Example
+------------------------------------|--------------------------------------------------|-----------------------------------------------
+… | Select-Object Prop,…            | Choose properties                                | Get-Process | Select Name, Id
+… | Where-Object { $_.Prop -op Val }| Filter objects                                   | Get-Service | Where { $_.Status -eq 'Running' }
+… | ForEach-Object { … }            | Process each object                              | Get-ChildItem *.log | ForEach { $_.Length }
+Group-Object / Sort-Object          | Group or sort                                    | gps | Group Company | Sort Count -desc
+Measure-Object                      | Sum/Count/Avg                                    | gci *.txt | Measure Length -Sum
+
+------------------------------------------------------
+
+⚡️ Variables, Arrays, Hashtables
+
+Pattern                             | Meaning                                          | Example
+------------------------------------|--------------------------------------------------|-----------------------------------------------
+$scalar                             | Single value                                     | $n = 5
+@()                                 | Array                                            | $nums = 1..5; $nums[0]
+@{}                                 | Hashtable (dictionary)                           | $h = @{Name='JM'; Role='Student'}; $h.Name
+[Type] cast                         | Explicit type                                    | [int]"42"; [datetime]'2025-01-01'
+$env:NAME                           | Environment var                                  | $env:PATH
+
+------------------------------------------------------
+
+⚡️ Operators (Common)
+
+Category                            | Operators                                        | Example
+------------------------------------|--------------------------------------------------|-----------------------------------------------
+Comparison                          | -eq -ne -gt -ge -lt -le                          | if ($n -gt 3) { … }
+String (wildcards)                  | -like -notlike                                   | "file.ps1" -like "*.ps1"
+Regex                               | -match -notmatch                                 | "abc123" -match '\d+'
+Logical                             | -and -or -xor -not                               | if ($a -and $b) { … }
+Containment                         | -in -notin -contains -notcontains                | 3 -in 1..5
+Replace                             | -replace                                         | "a1" -replace '\d','X'
+
+------------------------------------------------------
+
+⚡️ Control Flow
+
+Form                                | Meaning                                          | Example
+------------------------------------|--------------------------------------------------|-----------------------------------------------
+if (cond) { } elseif { } else { }  | Branching                                        | if ($ok) { … } else { … }
+switch ($x) { val { } default { } }| Multi-branch (supports regex, script blocks)      | switch ($ext) { '.ps1' {'script'} default {'?'} }
+for ($i=0; $i -lt 3; $i++) { }     | Classic for loop                                  | for ($i=0; $i -lt 5; $i++) { "$i" }
+foreach ($x in $xs) { }            | Iterate collection                                | foreach ($f in (gci *.txt)) { $f.Name }
+while (cond) { } / do { } while()  | Loops                                            | while ($true) { break }
+
+------------------------------------------------------
+
+⚡️ Functions, Parameters & Splatting
+
+Pattern                             | Meaning                                          | Example
+------------------------------------|--------------------------------------------------|-----------------------------------------------
+function Name { param(...) … }      | Define a function                                | function Greet { param([string]$Name) "Hi $Name" }
+[Parameter(Mandatory)]              | Make parameter required                           | param([Parameter(Mandatory)]$Path)
+ValidateSet()/ValidateRange()       | Input validation                                  | param([ValidateSet('Low','High')]$Level)
+Splatting                           | Pass params via hashtable                         | $p=@{Path='a.txt';Force=$true}; Remove-Item @p
+
+------------------------------------------------------
+
+⚡️ Dates, Times & Formatting
+
+Task                                | Example
+------------------------------------|--------------------------------------------------
+Get current formatted               | Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
+Embed in string (subexpression)     | "Now: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
+Format operator                     | "Now: {0:yyyy-MM-dd HH:mm:ss}" -f (Get-Date)
+Add/subtract time                   | (Get-Date).AddDays(7); (Get-Date) + (New-TimeSpan -Hours 2)
+
+------------------------------------------------------
+
+⚡️ Files, Folders & I/O (quick recap)
+
+Create file                         | New-Item file.txt -ItemType File
+Write/Append                        | "Hi" | Out-File file.txt ; "More" | Add-Content file.txt
+Read                                | Get-Content file.txt
+Clear file                          | Clear-Content file.txt
+Create folder                       | New-Item .\A\B -ItemType Directory -Force
+Delete file/folder                  | Remove-Item file.txt ; Remove-Item .\Old -Recurse -Force
+Path join                           | Join-Path $HOME 'Documents\notes.txt'
+Test path                           | if (Test-Path $p) { … }
+
+------------------------------------------------------
+
+⚡️ Errors & Try/Catch
+
+Pattern                             | Meaning                                          | Example
+------------------------------------|--------------------------------------------------|-----------------------------------------------
+$ErrorActionPreference              | Global error behavior (Continue/Stop/Silently)   | $ErrorActionPreference = 'Stop'
+-ErrorAction                        | Per-cmdlet override                              | Get-Item foo -ErrorAction SilentlyContinue
+try { … } catch { … } finally { }   | Structured error handling                        | try { ri bad } catch { $_.Exception.Message }
+
+------------------------------------------------------
+
+⚡️ Modules & Scripts
+
+Import module                       | Import-Module MyModule
+List modules                        | Get-Module -ListAvailable
+Script location variables           | $PSScriptRoot (folder of current script)
+Execution policy (view/set)         | Get-ExecutionPolicy; Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
+Run local script                    | .\script.ps1
+Dot-source (load functions)         | . .\helpers.ps1   # notice the leading dot+space
+
+------------------------------------------------------
+
+⚡️ Formatting & Export
+
+Format-Table / Format-List          | Get-Process | Format-Table Name,Id,CPU -AutoSize
+Export CSV/JSON                     | Get-Process | Export-Csv procs.csv -NoTypeInformation
+Convert to JSON                     | Get-Item .\ | ConvertTo-Json -Depth 3
+Out-GridView (GUI filter)           | Get-Service | Out-GridView
+
+------------------------------------------------------
+
+⚡️ Tips
+
+- Prefer **Write-Output** for script results (keeps things pipeline-friendly). Use **Write-Host** only for UI messages.
+- Use **double quotes** for strings that need `$variable` or `$(command)` expansion; single quotes for literals.
+- Avoid ending a line with a backtick (**`**). It escapes the newline and often causes “Incomplete string token.”
+- Use **$()** subexpression to run commands inside strings; e.g., `"Time: $(Get-Date)"`.
+- Use **-WhatIf** and **-Confirm** on destructive commands (Remove-Item, Stop-Process, etc.).
+- Use **Set-StrictMode -Version Latest** in learning scripts to catch bad habits early.
+

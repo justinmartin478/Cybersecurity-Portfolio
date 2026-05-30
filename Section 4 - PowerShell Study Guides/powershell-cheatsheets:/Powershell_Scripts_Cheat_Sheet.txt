@@ -1,0 +1,59 @@
+# 📝 PowerShell Scripts Cheat Sheet (Create • Edit • Run)
+
+---------------------------------------------------------------------------
+---------------------------------------------------------------------------
+| Command                              | Meaning                              | Example                              |
+---------------------------------------------------------------------------
+| New-Item <file> -ItemType File       | Create a new .ps1 file               | New-Item hello.ps1 -ItemType File    |
+| Set-Content <file> "<text>"          | Write/overwrite file content         | Set-Content hello.ps1 'Write-Output "Hi"' |
+| Add-Content <file> "<text>"          | Append a line to file                | Add-Content hello.ps1 'Write-Output "Again"' |
+| notepad <file>                       | Edit in Notepad (Windows)            | notepad .\hello.ps1                  |
+| powershell_ise <file>                | Edit in Windows PowerShell ISE       | powershell_ise .\hello.ps1           |
+| nano <file>                          | Edit in nano (macOS/Linux)           | nano hello.ps1                       |
+| code <file>                          | Edit in VS Code (if installed)       | code hello.ps1                       |
+| chmod +x <file>                      | Make script executable (*nix)        | chmod +x hello.ps1                   |
+| Set-ExecutionPolicy RemoteSigned     | Allow local scripts (Windows)        | Set-ExecutionPolicy -Scope CurrentUser RemoteSigned |
+| .\script.ps1                         | Run script (Windows)                 | .\hello.ps1                          |
+| ./script.ps1                         | Run script (macOS/Linux)             | ./hello.ps1                          |
+| pwsh -File <file>                    | Run with pwsh explicitly             | pwsh -File ./hello.ps1               |
+| Get-Content <file>                   | View file contents                   | Get-Content hello.ps1                |
+---------------------------------------------------------------------------
+
+# 📑 Common Patterns
+
+# 1) Create file, then edit (choose one editor)
+New-Item hello.ps1 -ItemType File
+notepad .\hello.ps1
+# OR (macOS/Linux) nano hello.ps1
+# OR (any OS with VS Code) code hello.ps1
+
+# 2) Put this inside hello.ps1, save:
+# Write-Output "Hello Justin! PowerShell Core is working 🚀"
+
+# 3) First-run setup (only if needed)
+# Windows: allow local scripts
+Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
+# macOS/Linux: make file executable
+chmod +x hello.ps1
+
+# 4) Run it
+# Windows:
+.\hello.ps1
+# macOS/Linux:
+./hello.ps1
+# (works anywhere)
+pwsh -File ./hello.ps1
+
+# 5) Quick one-liners without opening an editor
+Set-Content hello.ps1 'Write-Output "Hi"'
+Add-Content hello.ps1 'Write-Output "Again"'
+.\hello.ps1   # or ./hello.ps1
+
+# Tips
+- Windows uses `.\script.ps1`; macOS/Linux uses `./script.ps1`.
+- On *nix, `chmod +x` is required only if you execute the file directly; `pwsh -File` doesn’t need it.
+- Prefer VS Code (`code`) for IntelliSense + debugging across all OSes.
+- ISE is Windows-only and tied to Windows PowerShell 5.1; scripts still run fine in PowerShell 7+ (pwsh).
+- Keep scripts in a dedicated folder (e.g., ~/ps-scripts) and use git for version control.
+---------------------------------------------------------------------------
+

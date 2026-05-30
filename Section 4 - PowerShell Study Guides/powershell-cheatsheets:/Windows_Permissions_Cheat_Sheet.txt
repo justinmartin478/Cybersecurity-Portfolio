@@ -1,0 +1,56 @@
+# 🔐 Windows Permissions Cheat Sheet (CMD & PowerShell)
+
+------------------------------------------------------------
+| Tool/Command                      | Meaning                            | Example                          |
+------------------------------------------------------------
+| icacls file.txt                   | Show file/folder permissions       | icacls file.txt                  |
+| icacls file.txt /grant User:F     | Grant Full Control to user         | icacls report.txt /grant Justin:F|
+| icacls file.txt /grant User:R     | Grant Read-only                    | icacls notes.txt /grant Guest:R  |
+| icacls file.txt /remove User      | Remove all permissions for user    | icacls file.txt /remove Guest    |
+| icacls folder /grant User:F /t    | Apply perms recursively (/t)       | icacls C:\Docs /grant Justin:F /t|
+| icacls file.txt /inheritance:e    | Enable inheritance                 | icacls file.txt /inheritance:e   |
+| icacls file.txt /inheritance:d    | Disable inheritance                | icacls file.txt /inheritance:d   |
+| Get-Acl file.txt                  | Show ACL (PowerShell)              | Get-Acl .\file.txt               |
+| Set-Acl file.txt                  | Apply ACL (PowerShell)             | Set-Acl .\file.txt $acl          |
+------------------------------------------------------------
+
+# 📝 Common Patterns (CMD)
+
+# Grant user Modify access
+icacls project.docx /grant Justin:M
+
+# Grant group Read & Execute
+icacls project /grant "Users:RX" /t
+
+# Remove all permissions for a user
+icacls secret.txt /remove Guest
+
+# Reset permissions to default inheritance
+icacls file.txt /reset
+
+------------------------------------------------------------
+# 📝 Common Patterns (PowerShell)
+
+# View permissions
+Get-Acl .\file.txt | Format-List
+
+# Grant Full Control to user
+$acl = Get-Acl .\file.txt
+$rule = New-Object System.Security.AccessControl.FileSystemAccessRule("Justin","FullControl","Allow")
+$acl.SetAccessRule($rule)
+Set-Acl .\file.txt $acl
+
+# Remove a user’s permissions
+$acl = Get-Acl .\file.txt
+$acl.Access | Where-Object { $_.IdentityReference -eq "Guest" } | ForEach-Object { $acl.RemoveAccessRule($_) }
+Set-Acl .\file.txt $acl
+
+------------------------------------------------------------
+⚡ Tips:
+- In icacls: F=Full, M=Modify, RX=Read & Execute, R=Read, W=Write.
+- Use quotes if username/group has spaces (e.g., "Domain Users").
+- /t makes changes recursive on folder + subfolders.
+- Inheritance means children files/folders automatically adopt parent’s rules.
+- icacls is faster for quick fixes, PowerShell is better for complex scripting.
+------------------------------------------------------------
+

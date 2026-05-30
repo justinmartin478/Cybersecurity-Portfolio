@@ -1,0 +1,65 @@
+# ═══════════════════════════════════════════════════════════════════════════════
+# 📚 DEVASC LAB NOTES: Git Version Control + Python Parsing + Linux Security
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# ============================================================================
+# 🐧 GIT VERSION CONTROL (3.3.11-lab)
+# ============================================================================
+
+# Initialize Git Repo
+cd ~/labs/devnet-src
+mkdir git-intro && cd git-intro
+git init                          # Creates .git/ hidden dir
+git config --global user.name "YourName"
+git config --global user.email "you@example.com"
+git config --list                 # Verify config
+
+# Git Workflow: Add → Commit → Push
+echo "DEVASC content" > DEVASC.txt
+git status                        # Shows untracked files
+git add DEVASC.txt                # Stage file (working dir → staging area)
+git commit -m "Initial DEVASC commit"  # Commit to repo
+git log                           # View commit history
+git status                        # "working tree clean"
+
+# Branches & Merging
+git branch feature                # Create branch
+git checkout feature              # Switch to branch
+git branch                        # List branches (* = current)
+echo "Feature work" >> DEVASC.txt
+git add . && git commit -m "Feature update"
+git checkout master
+git merge feature                 # Merge feature → master
+git branch -d feature             # Delete branch
+
+# GitHub Integration
+git remote add origin https://github.com/username/repo.git
+git remote -v                     # Verify remote
+git push origin master            # Push to GitHub
+# 🚨 ERROR FIX: If "repo not found":
+git remote rm origin
+git remote add origin https://github.com/CORRECT-username/repo.git
+git push origin master
+
+# ============================================================================
+# 🚨 TROUBLESHOOTING TIPS
+# ============================================================================
+
+# Git push fails → Remove/re-add remote
+git remote rm origin
+git remote add origin https://github.com/user/repo.git
+
+# Python YAML errors → Install PyYAML
+pip3 install pyyaml
+
+# Permission denied → Check file perms
+ls -la
+chmod +x script.py
+
+# Service not starting → Check SELinux
+getenforce  # Enforcing/Permissive
+sestatus
+
+# Firewall blocking → Check rules
+iptables -L | grep DROP
+systemctl status firewalld

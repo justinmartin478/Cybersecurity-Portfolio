@@ -1,0 +1,50 @@
+===============================================
+🔐 LINUX CHMOD PERMISSION CHEAT SHEET
+===============================================
+
+📊 PERMISSION VALUES:
+  r = 4   w = 2   x = 1
+
+🔢 NUMERIC (OCTAL) EXAMPLES:
+  600 → rw-------   (User: rw, Group: -, Others: -)
+  644 → rw-r--r--   (User: rw, Group: r, Others: r)
+  700 → rwx------   (User: rwx, Group: -, Others: -)
+  755 → rwxr-xr-x   (User: rwx, Group: r-x, Others: r-x)
+  777 → rwxrwxrwx   (Everyone full access ⚠️)
+
+🔣 SYMBOLIC EXAMPLES:
+  chmod u+x file         → Add execute to user
+  chmod g-w file         → Remove write from group
+  chmod o+r file         → Add read to others
+  chmod u=rw,g=r,o= file → Set exact permissions
+
+💡 TIPS:
+  - Directories need 'x' to cd into.
+  - Avoid 777 on sensitive files.
+  - Combine numeric & symbolic as needed.
+
+===============================================
+
+🧠 PRACTICE DRILLS:
+-----------------------------------------------
+1) What permission does 640 represent?
+   (Hint: Break into user, group, others)
+
+2) Write the chmod command to:
+   - Remove execute from others
+   - Add write to group
+   - Give user full rwx
+
+3) What numeric value matches: rwxr----- ?
+
+4) Which permission is safer for a private file:
+   600 or 644? Why?
+
+5) Bonus: How would you set a directory to:
+   - User: rwx
+   - Group: r-x
+   - Others: no access
+   (numeric + symbolic)
+-----------------------------------------------
+💡 Pro tip: Test your answers on a dummy file with 'touch test.txt'
+

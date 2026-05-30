@@ -1,0 +1,57 @@
+# 📦 Archiving & Compression Cheat Sheet
+
+------------------------------------------------------------
+| Command               | Meaning                                  | Example                          |
+------------------------------------------------------------
+| gzip file             | Compress file to file.gz                 | gzip notes.txt                   |
+| gunzip file.gz        | Decompress .gz file                      | gunzip notes.txt.gz              |
+| bzip2 file            | Compress file to file.bz2                | bzip2 data.csv                   |
+| bunzip2 file.bz2      | Decompress .bz2 file                     | bunzip2 data.csv.bz2             |
+| xz file               | Compress file to file.xz                 | xz largefile.iso                 |
+| unxz file.xz          | Decompress .xz file                      | unxz largefile.iso.xz            |
+| zip archive.zip files | Create .zip archive                      | zip backup.zip file1 file2       |
+| zip -r archive.zip dir| Create .zip of entire directory          | zip -r project.zip myfolder/     |
+| unzip archive.zip     | Extract .zip archive                     | unzip backup.zip                 |
+| unzip -l archive.zip  | List contents of .zip archive            | unzip -l backup.zip              |
+------------------------------------------------------------
+
+# 📝 Common Patterns
+
+# Compress a file with gzip
+gzip logfile.log
+
+# Decompress gzip file
+gunzip logfile.log.gz
+
+# Compress file with bzip2 (better compression than gzip)
+bzip2 dataset.csv
+
+# Decompress bzip2 file
+bunzip2 dataset.csv.bz2
+
+# Compress file with xz (very high compression, slower)
+xz bigfile.iso
+
+# Decompress xz file
+unxz bigfile.iso.xz
+
+# Zip multiple files
+zip notes.zip note1.txt note2.txt note3.txt
+
+# Zip entire folder
+zip -r project.zip my_project/
+
+# Unzip into current directory
+unzip project.zip
+
+# Unzip into specific directory
+unzip project.zip -d ~/extract_here
+------------------------------------------------------------
+
+⚡ Tips:
+- gzip, bzip2, and xz work on **single files only** (use tar + them for directories).
+- zip/unzip handle both files and directories (with -r).
+- "unzip -l file.zip" shows contents without extracting.
+- For best balance: gzip = fast, bzip2 = smaller, xz = smallest but slow.
+------------------------------------------------------------
+

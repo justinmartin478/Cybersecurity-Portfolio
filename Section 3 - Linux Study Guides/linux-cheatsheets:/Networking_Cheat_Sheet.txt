@@ -1,0 +1,65 @@
+# 🌐 Networking Cheat Sheet
+
+------------------------------------------------------------
+| Command                   | Meaning                              | Example                          |
+------------------------------------------------------------
+| ping host                 | Test connectivity to host            | ping google.com                  |
+| ping -c 4 host            | Send 4 ICMP packets                  | ping -c 4 8.8.8.8                |
+| curl url                  | Fetch content from URL               | curl https://example.com         |
+| curl -I url               | Show headers only                    | curl -I https://example.com      |
+| wget url                  | Download file from web               | wget https://site.com/file.iso   |
+| scp file user@host:/path  | Secure copy file to remote host      | scp notes.txt user@1.2.3.4:/tmp/ |
+| scp user@host:/path/file .| Secure copy file from remote host    | scp user@1.2.3.4:/tmp/log.txt .  |
+| ssh user@host             | Secure shell to remote machine       | ssh justin@192.168.1.10          |
+| netstat -tulnp            | Show active ports & processes        | netstat -tulnp                   |
+| ss -tulnp                 | Show active ports (modern tool)      | ss -tulnp                        |
+| ifconfig (or ip addr)     | Show network interfaces & IPs        | ip addr                          |
+| ip route                  | Show routing table                   | ip route                         |
+| traceroute host           | Trace path to host                   | traceroute google.com            |
+| nslookup domain           | DNS lookup                           | nslookup openai.com              |
+| dig domain                | Detailed DNS query                   | dig example.com                  |
+------------------------------------------------------------
+
+# 📝 Common Patterns
+
+# Quick ping test
+ping -c 4 google.com
+
+# Fetch headers of a site
+curl -I https://example.com
+
+# Download a file
+wget https://releases.ubuntu.com/22.04/ubuntu.iso
+
+# SSH into server
+ssh justin@192.168.1.20
+
+# Copy file TO server
+scp myfile.txt justin@192.168.1.20:/home/justin/
+
+# Copy file FROM server
+scp justin@192.168.1.20:/var/log/syslog ./syslog_copy
+
+# Show active connections
+ss -tulnp
+
+# Show my IP addresses
+ip addr
+
+# Trace hops to a server
+traceroute 8.8.8.8
+
+# Check DNS resolution
+nslookup google.com
+dig openai.com
+------------------------------------------------------------
+
+⚡ Tips:
+- "ping -c <num>" stops automatically after sending <num> packets.
+- Use "curl" for testing APIs and websites quickly.
+- "wget -c" resumes an interrupted download.
+- "scp -r" copies entire directories recursively.
+- "ss" is the modern replacement for "netstat".
+- For DNS: "dig +short domain" gives clean IP results.
+------------------------------------------------------------
+

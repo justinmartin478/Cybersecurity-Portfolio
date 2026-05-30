@@ -1,0 +1,107 @@
+IT 224 — PowerShell Essentials Cheat Sheet
+==========================================
+
+Variables & Comments
+--------------------
+- Variables start with `$`:  `$name = "Justin"`
+- Single vs double quotes: `'literal $name'` vs `"Hello $name"`
+- Line comment: `# ...`
+- Block comments: `<# ... #>`
+
+Pipeline & Formatting
+---------------------
+- Pipeline `|` passes **objects** to the next command.
+  Example: `Get-Process | Where-Object CPU -gt 10 | Sort-Object CPU -Descending`
+- **Filter early, format last.**
+  - Prefer native filters: `Get-Service -Status Running` over `... | Where-Object`.
+  - After `Format-Table/List`, the output is formatting objects; don’t pipe those to `Export-Csv` or `ConvertTo-*`.
+  - Use `Select-Object` to choose properties before formatting.
+
+Discovery & Help
+----------------
+- Find commands: `Get-Command *service* -CommandType Cmdlet`
+- Learn a command: `Get-Help Get-Service -Full` or `-Examples`
+- Update help (admin + internet): `Update-Help`
+
+Files & Text
+------------
+- Create/overwrite: `Set-Content path "text"` or `"text" | Out-File path`
+- Append: `Add-Content path "text"` or `Out-File -Append`
+- Read: `Get-Content path` (`-Raw` for one string, `-Tail N` for last N lines)
+- Delete: `Remove-Item path [-Recurse -Force]`
+- Exists?: `Test-Path path`
+- Replace-in-file (regex): `((Get-Content file) -replace 'old','new') | Set-Content file`
+
+Processes & Services
+--------------------
+- Processes: `Get-Process`, `Stop-Process -Id <pid> [-Force]`, `Start-Process notepad`
+- Services: `Get-Service -Name Win* -Status Running`
+- Change startup: `Set-Service -Name Spooler -StartupType Disabled`
+
+Input & Output
+--------------
+- Prompt user: `$x = Read-Host "Enter value"`
+- Console message: `Write-Host "Hello"`  (direct to screen)
+- Pipeline-friendly output: `Write-Output "Hello"` (alias: `echo`)
+- CSV: `Export-Csv out.csv -NoTypeInformation`, `Import-Csv out.csv`
+- JSON: `ConvertTo-Json`, `ConvertFrom-Json`
+
+Wildcards & Comparisons
+-----------------------
+- Wildcards: `-like` (e.g., `Name -like "*date"`), exact: `-eq`, regex: `-match`
+- Arrays: `-contains` tests membership in an array; `"x" -in $array` is the inverse.
+
+Execution Policy & Security
+---------------------------
+- Check policy: `Get-ExecutionPolicy`
+- Common dev setting: `Set-ExecutionPolicy RemoteSigned -Scope CurrentUser`
+- Use safety switches: `-WhatIf` and `-Confirm`
+
+Errors & Try/Catch
+------------------
+```
+try {
+  # risky stuff
+} catch {
+  Write-Host "Error: $($_.Exception.Message)"
+} finally {
+  # cleanup
+}
+```
+- Per-command suppression: `-ErrorAction SilentlyContinue`
+- Global preference: `$ErrorActionPreference = "Stop"`
+
+Profiles, Env, & Paths
+----------------------
+- Profile file path: `$PROFILE`
+- Environment vars: `$env:Path`
+- Paths: `$HOME`, `$PSScriptRoot`, `Join-Path $HOME "Downloads"`
+
+Providers & Drives
+------------------
+- Registry: `HKLM:\`, `HKCU:\`
+- Certificates: `Cert:\`
+- Environment: `Env:\`
+
+Common Patterns
+---------------
+- Last 50 lines of a log: `Get-Content .\app.log -Tail 50`
+- Find *.log recursively: `Get-ChildItem C:\Temp -Filter *.log -Recurse`
+- Show Name & Status of running services:
+  `Get-Service -Status Running | Select-Object Name, Status`
+- Export processes to CSV:
+  `Get-Process | Select-Object Name, Id, CPU | Export-Csv procs.csv -NoTypeInformation`
+
+Exam Traps to Avoid
+-------------------
+- Don’t pipe `Format-Table` into `Export-Csv`—formatting objects aren’t data.
+- Use cmdlet parameters to filter when available (`-Status`, `-Name`, `-Filter`). 
+- `-contains` is **not** a substring test; use `-like` or `-match` for strings.
+- Quote paths with spaces: `"C:\Program Files\App\file.txt"`
+- Wildcard patterns: `*date` (end with 'date'), `date*` (start with 'date').
+
+Version & Info
+--------------
+- PowerShell version: `$PSVersionTable.PSVersion`
+- Computer name: `$env:COMPUTERNAME`
+- Current date/time: `Get-Date -Format "yyyy-MM-dd HH:mm:ss"`

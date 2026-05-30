@@ -1,0 +1,68 @@
+# 📝 Windows File Creation & Editing Cheat Sheet
+
+------------------------------------------------------------
+| CMD Command                  | PowerShell Equivalent                 | Meaning                         |
+------------------------------------------------------------
+| type nul > file.txt          | New-Item file.txt -ItemType File      | Create empty file (like touch)  |
+| echo Hello > file.txt        | "Hello" | Out-File file.txt            | Write text (overwrite)          |
+| echo Hello >> file.txt       | "Hello" | Out-File file.txt -Append    | Append text to file             |
+| echo. > file.txt             | Out-File file.txt                     | Create empty file               |
+| echo Secret > C:\path\file   | "Secret" | Out-File C:\path\file.txt   | Write text to file in directory |
+| type file.txt                | Get-Content file.txt (gc)             | View file contents              |
+| more file.txt                | Get-Content file.txt | more           | View file paged                 |
+------------------------------------------------------------
+
+# 📝 Common Patterns (CMD)
+
+# Create empty file
+type nul > notes.txt
+
+# Write text to file (overwrite)
+echo Hello World > notes.txt
+
+# Append new line
+echo Another line >> notes.txt
+
+# Create file inside directory
+echo Secrets > C:\Users\Justin\Documents\secret.txt
+
+------------------------------------------------------------
+# 📝 Common Patterns (PowerShell)
+
+# Create empty file
+New-Item notes.txt -ItemType File
+
+# Write text (overwrite by default)
+"Hello World" | Out-File notes.txt
+
+# Append text
+"Another line" | Out-File notes.txt -Append
+
+# Shorthand overwrite
+"Hello World" > notes.txt
+
+# Shorthand append
+"Another line" >> notes.txt
+
+# Write multiple lines (Here-String, overwrite)
+@"
+Line one
+Line two
+Line three
+"@ | Out-File notes.txt
+
+# Write multiple lines (Here-String, append)
+@"
+Line four
+Line five
+"@ | Out-File notes.txt -Append
+------------------------------------------------------------
+
+⚡ Tips:
+- CMD: ">" overwrites, ">>" appends.
+- PowerShell: Out-File overwrites unless you add -Append.
+- Shorthand > (overwrite) and >> (append) also work in PowerShell.
+- Use Get-Content (gc) to view file contents.
+- Use Here-Strings (@"" "@) in PowerShell like Linux’s cat << EOF.
+------------------------------------------------------------
+

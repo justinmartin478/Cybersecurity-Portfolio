@@ -1,0 +1,64 @@
+# 🔐 Permissions & Ownership Cheat Sheet
+
+------------------------------------------------------------
+| Command              | Meaning                                | Example                         |
+------------------------------------------------------------
+| ls -l                | Show file permissions (long listing)   | ls -l file.txt                  |
+| chmod 755 file       | Change permissions (numeric mode)      | chmod 644 notes.txt             |
+| chmod u+x script.sh  | Add execute for owner (symbolic mode)  | chmod u+x run.sh                |
+| chmod g-w file       | Remove write from group                | chmod g-w report.txt            |
+| chmod o+r file       | Add read for others                    | chmod o+r public.txt            |
+| chown user file      | Change file owner                      | sudo chown justin file.txt      |
+| chown user:group f   | Change owner and group                 | sudo chown justin:admins file   |
+| chgrp group file     | Change group owner                     | sudo chgrp staff shared.txt     |
+------------------------------------------------------------
+
+# 📝 Permission Basics
+
+- Read (r)  = 4
+- Write (w) = 2
+- Execute(x)= 1
+
+Combine them:
+- 7 = rwx
+- 6 = rw-
+- 5 = r-x
+- 4 = r--
+
+Examples:
+- chmod 777 file.txt → rwxrwxrwx (everyone full access)
+- chmod 755 file.txt → rwxr-xr-x (owner full, others read/execute)
+- chmod 644 file.txt → rw-r--r-- (owner read/write, others read only)
+
+------------------------------------------------------------
+# 📝 Common Patterns
+
+# Give everyone full access (not recommended usually)
+chmod 777 file.txt
+
+# Secure a file (owner read/write only)
+chmod 600 secrets.txt
+
+# Make a script executable
+chmod +x script.sh
+
+# Add write permission for group
+chmod g+w project.txt
+
+# Change ownership to specific user
+sudo chown justin file.txt
+
+# Change owner and group at same time
+sudo chown justin:devs project/
+
+# Change group only
+sudo chgrp staff shared.txt
+
+------------------------------------------------------------
+⚡ Tips:
+- Use "ls -l" to check permissions before/after.
+- Numeric mode (chmod 755) is faster, symbolic mode (chmod u+x) is more readable.
+- "x" on a directory = permission to cd into it.
+- Sticky bit (chmod +t dir) = only file owner can delete inside (e.g., /tmp).
+------------------------------------------------------------
+

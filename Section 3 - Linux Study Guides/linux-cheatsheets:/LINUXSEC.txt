@@ -1,0 +1,50 @@
+# ============================================================================
+# 🔒 LINUX SECURITY CHEAT SHEET
+# ============================================================================
+
+# Core Concepts
+# DAC: Discretionary Access Control (file owner sets rwx bits)
+# MAC: Mandatory Access Control (SELinux/AppArmor enforces policy)
+# IDS/IPS: Intrusion Detection/Prevention Systems
+# Rainbow Tables: Precomputed password hashes
+
+# Runlevels (SysV): System targets that launch services
+# 0 = halt, 1 = single user (no network), 3 = multi-user (CLI), 5 = GUI
+
+# Filesystem Hierarchy
+/etc/          # Config files (my.cnf, mysql.cnf)
+/usr/          # Read-only programs/libraries
+/var/          # Variable data (logs, spool)
+/boot/         # Kernel + boot files
+/media/        # Mount points for removable media
+
+# Common Services & Ports
+# MySQL: TCP 3306 (config: /etc/my.cnf)
+/etc/my.cnf    # MySQL config
+/etc/mysql/    # MySQL data
+
+# Telnet: Insecure (use SSH instead) - TCP 23
+# SpamAssassin: Email spam filter
+
+# Firewalls
+# iptables (legacy):
+iptables -A INPUT -p icmp --icmp-type any -j ACCEPT  # Allow all ICMP
+iptables -L                          # List rules
+
+# nftables (modern): Successor to iptables
+nft list ruleset
+
+# Hardening Tools
+# SELinux: getenforce / sestatus
+# AppArmor: Ubuntu/Debian-based
+aa-status
+
+# Package Management
+# YUM/DNF (RHEL/CentOS/Fedora)
+yum check-update          # Check updates
+yum update                # Apply updates
+
+# Permissions Quick Ref
+r = read, w = write, x = execute
+For directories: x = traverse (cd into)
+chmod, chown, chgrp

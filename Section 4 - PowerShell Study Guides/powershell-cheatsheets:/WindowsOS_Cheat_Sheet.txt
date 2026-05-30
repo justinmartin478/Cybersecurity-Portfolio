@@ -1,0 +1,67 @@
+# 🪟 Windows OS Cheat Sheet (CMD & PowerShell)
+
+------------------------------------------------------------
+| Command (CMD)      | PowerShell Equivalent        | Meaning                           |
+------------------------------------------------------------
+| dir                | Get-ChildItem (ls, gci)      | List directory contents           |
+| cd, chdir          | Set-Location (cd)            | Change directory                  |
+| mkdir folder       | New-Item -ItemType Directory | Create new directory              |
+| rmdir folder       | Remove-Item folder -Force    | Remove directory                  |
+| copy file1 file2   | Copy-Item file1 file2        | Copy file                         |
+| move file1 file2   | Move-Item file1 file2        | Move or rename file               |
+| del file.txt       | Remove-Item file.txt         | Delete file                       |
+| type file.txt      | Get-Content file.txt (gc)    | View file contents                |
+| cls                | Clear-Host (clear)           | Clear screen                      |
+| echo text          | Write-Output "text"          | Print to screen                   |
+| ipconfig           | Get-NetIPConfiguration       | Show network info                 |
+| ping host          | Test-Connection host         | Ping host                         |
+| tasklist           | Get-Process (gps, ps)        | Show running processes            |
+| taskkill /PID 1234 | Stop-Process -Id 1234        | Kill process by PID               |
+| hostname           | hostname                     | Show computer name                |
+| systeminfo         | Get-ComputerInfo             | Show system info                  |
+| shutdown /s /t 0   | Stop-Computer                | Shutdown immediately              |
+| shutdown /r /t 0   | Restart-Computer             | Restart immediately               |
+------------------------------------------------------------
+
+# 📝 Common Patterns
+
+# CMD: List directory contents
+dir
+
+# PowerShell: List directory contents (alias: ls)
+Get-ChildItem
+ls
+
+# CMD: Change directory
+cd C:\Users\Justin\Documents
+
+# PowerShell: Change directory
+Set-Location C:\Users\Justin\Documents
+cd C:\Users\Justin\Documents
+
+# CMD: Copy file
+copy report.txt backup.txt
+
+# PowerShell: Copy file
+Copy-Item report.txt backup.txt
+
+# CMD: Show network info
+ipconfig /all
+
+# PowerShell: Show network info
+Get-NetIPConfiguration
+
+# CMD: Kill process
+taskkill /IM notepad.exe /F
+
+# PowerShell: Kill process
+Stop-Process -Name notepad -Force
+
+------------------------------------------------------------
+⚡ Tips:
+- In PowerShell, aliases make it feel like Linux: `ls`, `cat`, `pwd` all work.
+- Use TAB completion in PowerShell to auto-complete cmdlets.
+- Run PowerShell as Administrator for system-wide commands.
+- Combine PowerShell with `Out-File` or `Export-Csv` for reports.
+------------------------------------------------------------
+

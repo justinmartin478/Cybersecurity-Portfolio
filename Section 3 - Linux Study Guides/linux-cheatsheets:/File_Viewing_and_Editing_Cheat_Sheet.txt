@@ -1,0 +1,60 @@
+# 📝 File Viewing & Editing Cheat Sheet
+
+------------------------------------------------------------
+| Command           | Meaning                                   | Example                          |
+------------------------------------------------------------
+| cat file.txt      | View entire file                          | cat notes.txt                    |
+| bat file.txt      | Like cat but with colors (if installed)   | bat notes.txt                    |
+| less file.txt     | View large file, scroll with arrows       | less bigfile.log                  |
+| head file.txt     | Show first 10 lines                       | head notes.txt                   |
+| head -n 20 file   | Show first 20 lines                       | head -n 20 notes.txt              |
+| tail file.txt     | Show last 10 lines                        | tail notes.txt                   |
+| tail -f file      | Follow file in real-time (logs)           | tail -f /var/log/syslog           |
+| echo "text" > f   | Write text to file (overwrite)            | echo "Hello" > hello.txt          |
+| echo "text" >> f  | Append text to file                       | echo "Ready or Not!" >> secrets.txt |
+| printf            | Write formatted text                      | printf "Name: %s\n" Justin > file |
+| nano file.txt     | Edit file in nano editor                  | nano notes.txt                    |
+| vim file.txt      | Edit file in vim editor                   | vim notes.txt                     |
+------------------------------------------------------------
+
+# 📝 Common Patterns
+
+# Create new file with text inside
+echo "Top secret password: swordfish" > secrets.txt
+
+# Append new line to existing file
+echo "Another secret goes here..." >> secrets.txt
+
+# Write multiple lines at once
+cat << EOF > todo.txt
+- Learn Linux
+- Practice Python
+- Become IT God
+EOF
+
+# Append multiple lines to existing file
+cat << EOF >> todo.txt
+- Backup files
+- Configure firewall
+EOF
+
+Example without hyphens:
+cat << EOF > list.txt
+Item one
+Item two
+EOF
+
+# View file with line numbers
+nl todo.txt
+
+# Monitor logs in real-time
+tail -f /var/log/syslog
+
+------------------------------------------------------------
+⚡ Tips:
+- ">" overwrites a file; ">>" appends to it.
+- Use "nl" or "cat -n" to add line numbers when viewing.
+- Use "less" for large files (q to quit).
+- "tail -f" is your friend for watching logs live.
+------------------------------------------------------------
+
