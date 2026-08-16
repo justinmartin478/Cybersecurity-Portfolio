@@ -4,6 +4,12 @@
 
 This lab introduced Burp Suite for web application security testing using the OWASP Juice Shop application.
 
+## Outcome
+
+- Intercepted and analyzed HTTP traffic against OWASP Juice Shop using Burp Proxy.
+- Manipulated and replayed requests with Burp Repeater.
+- Tested application inputs for SQL injection weaknesses.
+
 ## Skills Demonstrated
 
 - HTTP Request Analysis

@@ -4,6 +4,12 @@
 
 This capstone assessment involved performing a full security assessment against a vulnerable target system. The objective was to identify weaknesses, gain access through multiple attack paths, and ultimately retrieve the target flag while documenting findings and remediation recommendations.
 
+## Outcome
+
+- Recovered hidden credentials through steganography and packet-capture analysis.
+- Gained remote access through multiple vectors, including FTP exploitation and Hydra credential attacks.
+- Retrieved the target flag and documented remediation recommendations.
+
 ## Skills Demonstrated
 
 - Network Discovery

@@ -4,6 +4,12 @@
 
 This lab explored web application vulnerabilities involving Local File Inclusion (LFI) and Remote File Inclusion (RFI) using the Damn Vulnerable Web Application (DVWA).
 
+## Outcome
+
+- Retrieved sensitive system files through Local File Inclusion (LFI).
+- Modified PHP configuration and hosted a payload to enable Remote File Inclusion (RFI).
+- Achieved remote code execution via a PHP reverse shell and Netcat listener.
+
 ## Skills Demonstrated
 
 - Docker Deployment

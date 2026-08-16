@@ -4,6 +4,12 @@
 
 This lab focused on identifying and exploiting multiple access vectors against a Metasploitable 3 target machine.
 
+## Outcome
+
+- Gained SSH access to the Metasploitable 3 target using discovered credentials.
+- Exploited EternalBlue (MS17-010) to obtain a reverse shell.
+- Enumerated FTP services and recovered hidden data through steganography investigation.
+
 ## Skills Demonstrated
 
 - SSH Access

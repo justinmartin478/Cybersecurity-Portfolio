@@ -4,6 +4,12 @@
 
 > The full report is rendered below. A formal copy is also available for download: [**Ethical-Hacking-Lab-21-System-Hacking.pdf**](./Ethical-Hacking-Lab-21-System-Hacking.pdf)
 
+## Outcome
+
+- Identified and enumerated the Windows target.
+- Established a Meterpreter session and escalated access to `NT AUTHORITY\SYSTEM`.
+- Extracted local account hashes and verified remote file upload and command execution.
+
 ## Skills Demonstrated
 
 - Network Scanning and Enumeration

@@ -1,5 +1,11 @@
 # Incident Response Lab
 
+## Outcome
+
+- Enumerated the LazySysAdmin target and gained access through exposed credentials and weak passwords.
+- Escalated privileges on the Linux host and modified hosted web content.
+- Applied UFW firewall controls to demonstrate post-exploitation hardening.
+
 ## Skills Demonstrated
 - Nmap Enumeration
 - SMB Enumeration
