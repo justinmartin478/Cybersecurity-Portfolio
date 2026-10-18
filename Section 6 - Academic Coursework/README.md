@@ -1,10 +1,12 @@
 # Academic Coursework
 
-Selected assignments from my bachelor's degree in cybersecurity at Green River College. Each folder holds the final submitted version of the assignment. The scenarios are fictional (Company ABC, Gatorware Software), and all IP addresses are documentation or private ranges.
+Selected assignments from my bachelor's degree in cybersecurity at Green River College. Each assignment folder holds the final submitted file, a PDF copy, and a README with the full text of the assignment. The scenarios are fictional (Company ABC, Gatorware Software), and all IP addresses are documentation or private ranges.
 
-Word (.docx) and PowerPoint (.pptx) files open in Microsoft Office. Discussion posts are saved as .html files and open in any browser.
+Word (.docx) and PowerPoint (.pptx) files open in Microsoft Office. Discussion posts are saved as .html files and open in any browser. Every assignment also has a PDF.
 
 ## IT490 Capstone - Cybersecurity & Networking
+
+[Class overview](IT490%20Capstone%20-%20Cybersecurity%20%26%20Networking/)
 
 | Week | Assignment | What it covers | File |
 | --- | --- | --- | --- |
@@ -21,6 +23,8 @@ Word (.docx) and PowerPoint (.pptx) files open in Microsoft Office. Discussion p
 | – | [certutil.exe LOLBin Detection](IT490%20Capstone%20-%20Cybersecurity%20%26%20Networking/certutil-lolbin-detection/) | Living-off-the-land abuse of certutil and how I would detect it with Event ID 4688 | Discussion post |
 
 ## IT295 CompTIA Project+ Cert Prep
+
+[Class overview](IT295%20CompTIA%20Project%2B%20Cert%20Prep/)
 
 | Module | Assignment | What it covers | File |
 | --- | --- | --- | --- |
