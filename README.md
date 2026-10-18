@@ -18,6 +18,8 @@ This repository contains hands on projects, security labs, Python tools, Linux g
 
 📁 Practical Cybersecurity Labs
 
+📁 [Academic Coursework](Section%206%20-%20Academic%20Coursework/)
+
 ## Skills Demonstrated
 
 - Incident Response

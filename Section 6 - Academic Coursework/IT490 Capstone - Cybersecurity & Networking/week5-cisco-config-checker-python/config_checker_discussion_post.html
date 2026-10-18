@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Canvas discussion post: Cisco configuration checker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+ --bg:#E9EDF3;--panel:#FFFFFF;--ink:#1F3864;--muted:#5B6575;--btn:#2F5496;--btnink:#FFFFFF;--line:#C9D2DF}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1B1D21;--panel:#FFFFFF;--ink:#DCE4F2;--muted:#9AA4B5;--btn:#4472C4;--line:#3A3F48}}
+:root[data-theme="dark"]{--bg:#1B1D21;--panel:#FFFFFF;--ink:#DCE4F2;--muted:#9AA4B5;--btn:#4472C4;--line:#3A3F48}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Balsamiq Sans','Comic Sans MS',sans-serif}
+main{max-width:880px;margin:0 auto;padding:28px 18px 48px}
+h1{font-size:22px;margin:0 0 6px}
+.sub{color:var(--muted);margin:0 0 20px;font-size:15px;line-height:1.5}
+.bar{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 16px}
+button{font:inherit;font-weight:700;font-size:15px;border:0;border-radius:6px;padding:10px 16px;cursor:pointer;background:var(--btn);color:var(--btnink)}
+button.ghost{background:transparent;color:var(--ink);border:2px solid var(--line)}
+button:focus-visible{outline:3px solid #F4B183;outline-offset:2px}
+.status{align-self:center;font-size:14px;color:var(--muted);min-height:1em}
+.post{background:var(--panel);border-radius:8px;padding:28px;border:1px solid var(--line);overflow-x:auto}
+.how{margin:22px 0 0;font-size:15px;line-height:1.6;color:var(--muted)}
+.how ol{padding-left:20px}
+textarea{width:100%;height:240px;margin-top:12px;font-size:13px;border-radius:6px;border:1px solid var(--line);padding:10px;display:none}
+textarea.show{display:block}
+</style></head><body><main>
+<h1>Canvas discussion post preview</h1>
+<p class="sub">Week 5 scripting post. The script keeps its indentation and uses Word colors for syntax, all in Balsamiq Sans. Copy it with one of the buttons and paste it into the Canvas reply box.</p>
+<div class="bar">
+ <button id="copyRich">Copy formatted post</button>
+ <button id="copyHtml" class="ghost">Copy HTML source</button>
+ <span class="status" id="status" role="status"></span>
+</div>
+<div class="post" id="post"><div style="font-family: 'Balsamiq Sans', 'Comic Sans MS', sans-serif; font-size: 16px; line-height: 1.6; color: #262626; max-width: 780px;">
+<p style="font-family: 'Balsamiq Sans', 'Comic Sans MS', sans-serif; margin: 0 0 4px 0; font-size: 14px; color: #2F5496; font-weight: bold;">Network automation with Python and Netmiko</p>
+<h3 style="font-family: 'Balsamiq Sans', 'Comic Sans MS', sans-serif; margin: 0 0 14px 0; font-size: 26px; color: #1F3864;">Company ABC Cisco Configuration Checker</h3>
+<p style="font-family: 'Balsamiq Sans', 'Comic Sans MS', sans-serif; margin: 0 0 12px 0;">For company ABC, I would use Python with the Netmiko library to check the configurations on our Cisco routers and Layer 3 switches. Logging into every device individually would take time, and it would be easy to overlook a setting. A script makes the process more consistent and helps identify devices that need attention.</p>
+<p style="font-family: 'Balsamiq Sans', 'Comic Sans MS', sans-serif; margin: 0 0 12px 0;">My script connects to each device through SSH, retrieves its running configuration, and checks a basic remote management baseline. It looks for SSH version 2 and checks each VTY line range for SSH access and local authentication. For this example, I am assuming ABC uses local user accounts rather than centralized AAA authentication.</p>
+<table style="font-family: 'Balsamiq Sans', 'Comic Sans MS', sans-serif; border-collapse: separate; border-spacing: 0; width: 100%; margin: 10px 0 4px 0;"><tbody><tr><td style="font-family: 'Balsamiq Sans', 'Comic Sans MS', sans-serif; width: 17%; padding: 8px 4px; text-align: center; vertical-align: middle; background-color: #D9E2F3; color: #1F3864; border: 2px solid #2F5496;"><span style="font-family: 'Balsamiq Sans', 'Comic Sans MS', sans-serif; font-size: 13px; font-weight: bold;">Step 1</span><br><span style="font-family: 'Balsamiq Sans', 'Comic Sans MS', sans-serif; font-size: 15px; font-weight: bold;">Inventory</span><br><span style="font-family: 'Balsamiq Sans', 'Comic Sans MS', sans-serif; font-size: 12px; color: #595959;">Routers and L3 switches</span></td><td style="font-family: 'Balsamiq Sans', 'Comic Sans MS', sans-serif; width: 3.75%; text-align: center; vertical-align: middle; color: #4472C4; font-size: 20px; font-weight: bold;">&#8594;</td><td style="font-family: 'Balsamiq Sans', 'Comic Sans MS', sans-serif; width: 17%; padding: 8px 4px; text-align: center; vertical-align: middle; background-color: #D9E2F3; color: #1F3864; border: 2px solid #2F5496;"><span style="font-family: 'Balsamiq Sans', 'Comic Sans MS', sans-serif; font-size: 13px; font-weight: bold;">Step 2</span><br><span style="font-family: 'Balsamiq Sans', 'Comic Sans MS', sans-serif; font-size: 15px; font-weight: bold;">SSH connect</span><br><span style="font-family: 'Balsamiq Sans', 'Comic Sans MS', sans-serif; font-size: 12px; color: #595959;">Host key verified</span></td><td style="font-family: 'Balsamiq Sans', 'Comic Sans MS', sans-serif; width: 3.75%; text-align: center; vertical-align: middle; color: #4472C4; font-size: 20px; font-weight: bold;">&#8594;</td><td style="font-family: 'Balsamiq Sans', 'Comic Sans MS', sans-serif; width: 17%; padding: 8px 4px; text-align: center; vertical-align: middle; background-color: #D9E2F3; color: #1F3864; border: 2px solid #2F5496;"><span style="font-family: 'Balsamiq Sans', 'Comic Sans MS', sans-serif; font-size: 13px; font-weight: bold;">Step 3</span><br><span style="font-family: 'Balsamiq Sans', 'Comic Sans MS', sans-serif; font-size: 15px; font-weight: bold;">Pull config</span><br><span style="font-family: 'Balsamiq Sans', 'Comic Sans MS', sans-serif; font-size: 12px; color: #595959;">show running-config</span></td><td style="font-family: 'Balsamiq Sans', 'Comic Sans MS', sans-serif; width: 3.75%; text-align: center; vertical-align: middle; color: #4472C4; font-size: 20px; font-weight: bold;">&#8594;</td><td style="font-family: 'Balsamiq Sans', 'Comic Sans MS', sans-serif; width: 17%; padding: 8px 4px; text-align: center; vertical-align: middle; background-color: #D9E2F3; color: #1F3864; border: 2px solid #2F5496;"><span style="font-family: 'Balsamiq Sans', 'Comic Sans MS', sans-serif; font-size: 13px; font-weight: bold;">Step 4</span><br><span style="font-family: 'Balsamiq Sans', 'Comic Sans MS', sans-serif; font-size: 15px; font-weight: bold;">Run checks</span><br><span style="font-family: 'Balsamiq Sans', 'Comic Sans MS', sans-serif; font-size: 12px; color: #595959;">SSH v2 and every VTY range</span></td><td style="font-family: 'Balsamiq Sans', 'Comic Sans MS', sans-serif; width: 3.75%; text-align: center; vertical-align: middle; color: #4472C4; font-size: 20px; font-weight: bold;">&#8594;</td><td style="font-family: 'Balsamiq Sans', 'Comic Sans MS', sans-serif; width: 17%; padding: 8px 4px; text-align: center; vertical-align: middle; background-color: #2F5496; color: #FFFFFF; border: 2px solid #2F5496;"><span style="font-family: 'Balsamiq Sans', 'Comic Sans MS', sans-serif; font-size: 13px; font-weight: bold;">Step 5</span><br><span style="font-family: 'Balsamiq Sans', 'Comic Sans MS', sans-serif; font-size: 15px; font-weight: bold;">Report</span><br><span style="font-family: 'Balsamiq Sans', 'Comic Sans MS', sans-serif; font-size: 12px; color: #FFFFFF;">PASS, REVIEW, or ERROR</span></td></tr></tbody></table>
+<p style="font-family: 'Balsamiq Sans', 'Comic Sans MS', sans-serif; margin: 4px 0 6px 0; font-size: 14px; color: #595959; text-align: center;"><strong style="color: #1F3864;">Figure 1.</strong> How the script processes each device. Original diagram created for this post.</p>
+<p style="font-family: 'Balsamiq Sans', 'Comic Sans MS', sans-serif; margin: 0 0 14px 0; font-size: 14px; color: #595959; text-align: center;">If a device fails at any step, the script reports an error and moves on to the next device.</p>
+<h4 style="font-family: 'Balsamiq Sans', 'Comic Sans MS', sans-serif; margin: 26px 0 8px 0; font-size: 18px; color: #1F3864; border-bottom: 2px solid #4472C4; padding-bottom: 3px;">What the script checks</h4>
+<table style="font-family: 'Balsamiq Sans', 'Comic Sans MS', sans-serif; border-collapse: collapse; width: 100%; margin: 4px 0 16px 0; font-size: 15px;"><tbody><tr><td style="font-family: 'Balsamiq Sans', 'Comic Sans MS', sans-serif; padding: 7px 12px; width: 42%; background-color: #2F5496; color: #FFFFFF; font-weight: bold; border-bottom: 2px solid #FFFFFF;">Check</td><td style="font-family: 'Balsamiq Sans', 'Comic Sans MS', sans-serif; padding: 7px 12px; background-color: #2F5496; color: #FFFFFF; font-weight: bold; border-bottom: 2px solid #FFFFFF;">PASS when the configuration contains</td></tr><tr><td style="font-family: 'Balsamiq Sans', 'Comic Sans MS', sans-serif; padding: 7px 12px; width: 42%; background-color: #D9E2F3; color: #1F3864; font-weight: bold; border-bottom: 2px solid #FFFFFF;">SSH version</td><td style="font-family: 'Balsamiq Sans', 'Comic Sans MS', sans-serif; padding: 7px 12px; background-color: #F2F2F2; border-bottom: 2px solid #FFFFFF;"><span style="color: #2F5496; font-weight: bold;">ip ssh version 2</span></td></tr><tr><td style="font-family: 'Balsamiq Sans', 'Comic Sans MS', sans-serif; padding: 7px 12px; width: 42%; background-color: #D9E2F3; color: #1F3864; font-weight: bold; border-bottom: 2px solid #FFFFFF;">VTY configuration</td><td style="font-family: 'Balsamiq Sans', 'Comic Sans MS', sans-serif; padding: 7px 12px; background-color: #F2F2F2; border-bottom: 2px solid #FFFFFF;">At least one <span style="color: #2F5496; font-weight: bold;">line vty</span> section</td></tr><tr><td style="font-family: 'Balsamiq Sans', 'Comic Sans MS', sans-serif; padding: 7px 12px; width: 42%; background-color: #D9E2F3; color: #1F3864; font-weight: bold; border-bottom: 2px solid #FFFFFF;">Each VTY range: SSH only</td><td style="font-family: 'Balsamiq Sans', 'Comic Sans MS', sans-serif; padding: 7px 12px; background-color: #F2F2F2; border-bottom: 2px solid #FFFFFF;"><span style="color: #2F5496; font-weight: bold;">transport input ssh</span></td></tr><tr><td style="font-family: 'Balsamiq Sans', 'Comic Sans MS', sans-serif; padding: 7px 12px; width: 42%; background-color: #D9E2F3; color: #1F3864; font-weight: bold;">Each VTY range: local authentication</td><td style="font-family: 'Balsamiq Sans', 'Comic Sans MS', sans-serif; padding: 7px 12px; background-color: #F2F2F2;"><span style="color: #2F5496; font-weight: bold;">login local</span></td></tr></tbody></table>
+<h4 style="font-family: 'Balsamiq Sans', 'Comic Sans MS', sans-serif; margin: 26px 0 8px 0; font-size: 18px; color: #1F3864; border-bottom: 2px solid #4472C4; padding-bottom: 3px;">The script</h4>
+<pre style="font-family: 'Balsamiq Sans', 'Comic Sans MS', sans-serif; background-color: #F2F2F2; border-left: 5px solid #4472C4; padding: 12px 16px; margin: 6px 0 16px 0; font-size: 14px; line-height: 1.5; color: #262626; white-space: pre; overflow-x: auto; tab-size: 4;"><span style="color: #2F5496; font-weight: bold;">import</span> re
+<span style="color: #2F5496; font-weight: bold;">from</span> getpass <span style="color: #2F5496; font-weight: bold;">import</span> getpass
+<span style="color: #2F5496; font-weight: bold;">from</span> netmiko <span style="color: #2F5496; font-weight: bold;">import</span> ConnectHandler
+
+<span style="color: #548235; font-style: italic;"># Example inventory: replace with all ABC routers and Layer 3 switches.</span>
+devices = {
+    <span style="color: #C55A11;">"SEA-R01"</span>: <span style="color: #C55A11;">"192.168.16.1"</span>,
+    <span style="color: #C55A11;">"SEA-SW01"</span>: <span style="color: #C55A11;">"192.168.16.2"</span>,
+    <span style="color: #C55A11;">"SEA-SW02"</span>: <span style="color: #C55A11;">"192.168.16.3"</span>,
+}
+
+username = <span style="color: #7030A0;">input</span>(<span style="color: #C55A11;">"Username: "</span>)
+password = getpass(<span style="color: #C55A11;">"SSH password: "</span>)
+enable_secret = getpass(<span style="color: #C55A11;">"Enable secret, if required: "</span>)
+
+<span style="color: #2F5496; font-weight: bold;">for</span> name, address <span style="color: #2F5496; font-weight: bold;">in</span> devices.items():
+    <span style="color: #7030A0;">print</span>(<span style="color: #C55A11;">f"\n--- {name} ({address}) ---"</span>)
+
+    <span style="color: #2F5496; font-weight: bold;">try</span>:
+        <span style="color: #2F5496; font-weight: bold;">with</span> ConnectHandler(
+            device_type=<span style="color: #C55A11;">"cisco_ios"</span>,
+            host=address,
+            username=username,
+            password=password,
+            secret=enable_secret,
+            ssh_strict=<span style="color: #2F5496; font-weight: bold;">True</span>,
+            system_host_keys=<span style="color: #2F5496; font-weight: bold;">True</span>,
+            conn_timeout=10,
+        ) <span style="color: #2F5496; font-weight: bold;">as</span> connection:
+            <span style="color: #2F5496; font-weight: bold;">if</span> <span style="color: #2F5496; font-weight: bold;">not</span> connection.check_enable_mode():
+                connection.enable()
+
+            config = connection.send_command(
+                <span style="color: #C55A11;">"show running-config"</span>, read_timeout=30
+            )
+
+        <span style="color: #2F5496; font-weight: bold;">if</span> <span style="color: #2F5496; font-weight: bold;">not</span> config.strip() <span style="color: #2F5496; font-weight: bold;">or</span> re.search(<span style="color: #C55A11;">r"^%.*"</span>, config, re.M):
+            <span style="color: #2F5496; font-weight: bold;">raise</span> <span style="color: #7030A0;">ValueError</span>(<span style="color: #C55A11;">"Could not retrieve a valid configuration."</span>)
+
+        checks = {
+            <span style="color: #C55A11;">"SSH version 2"</span>: <span style="color: #7030A0;">bool</span>(
+                re.search(<span style="color: #C55A11;">r"^ip ssh version 2\s*$"</span>, config, re.M)
+            )
+        }
+
+        vty_sections = <span style="color: #7030A0;">list</span>(re.finditer(
+            <span style="color: #C55A11;">r"^(line vty[^\n]*)\n((?:[ \t]+[^\n]*\n?)*)"</span>,
+            config,
+            re.M,
+        ))
+
+        checks[<span style="color: #C55A11;">"VTY configuration found"</span>] = <span style="color: #7030A0;">bool</span>(vty_sections)
+
+        <span style="color: #2F5496; font-weight: bold;">for</span> section <span style="color: #2F5496; font-weight: bold;">in</span> vty_sections:
+            label, settings = section.groups()
+            commands = {line.strip() <span style="color: #2F5496; font-weight: bold;">for</span> line <span style="color: #2F5496; font-weight: bold;">in</span> settings.splitlines()}
+            checks[<span style="color: #C55A11;">f"{label}: SSH only"</span>] = (
+                <span style="color: #C55A11;">"transport input ssh"</span> <span style="color: #2F5496; font-weight: bold;">in</span> commands
+            )
+            checks[<span style="color: #C55A11;">f"{label}: local authentication"</span>] = (
+                <span style="color: #C55A11;">"login local"</span> <span style="color: #2F5496; font-weight: bold;">in</span> commands
+            )
+
+        <span style="color: #2F5496; font-weight: bold;">for</span> setting, passed <span style="color: #2F5496; font-weight: bold;">in</span> checks.items():
+            status = <span style="color: #C55A11;">"PASS"</span> <span style="color: #2F5496; font-weight: bold;">if</span> passed <span style="color: #2F5496; font-weight: bold;">else</span> <span style="color: #C55A11;">"REVIEW"</span>
+            <span style="color: #7030A0;">print</span>(<span style="color: #C55A11;">f"{status}: {setting}"</span>)
+
+    <span style="color: #2F5496; font-weight: bold;">except</span> <span style="color: #7030A0;">Exception</span> <span style="color: #2F5496; font-weight: bold;">as</span> error:
+        <span style="color: #7030A0;">print</span>(<span style="color: #C55A11;">f"ERROR: Device check incomplete: {error}"</span>)</pre>
+<h4 style="font-family: 'Balsamiq Sans', 'Comic Sans MS', sans-serif; margin: 26px 0 8px 0; font-size: 18px; color: #1F3864; border-bottom: 2px solid #4472C4; padding-bottom: 3px;">Running it</h4>
+<p style="font-family: 'Balsamiq Sans', 'Comic Sans MS', sans-serif; margin: 0 0 12px 0;">Before running the script, I would install Netmiko using <span style="color: #2F5496; font-weight: bold;">python3 -m pip install netmiko</span> and replace the example inventory with ABC’s actual device addresses. Each device would need SSH enabled, an authorized account with permission to view the running configuration, and a verified host key saved in my <span style="color: #2F5496; font-weight: bold;">known_hosts</span> file. The script prompts for passwords instead of storing them in the code.</p>
+<h4 style="font-family: 'Balsamiq Sans', 'Comic Sans MS', sans-serif; margin: 26px 0 8px 0; font-size: 18px; color: #1F3864; border-bottom: 2px solid #4472C4; padding-bottom: 3px;">Reading the results</h4>
+<p style="font-family: 'Balsamiq Sans', 'Comic Sans MS', sans-serif; margin: 0 0 12px 0;">Each setting receives a PASS or REVIEW result. Checking every VTY section matters because one range could allow SSH while another still permits other access methods. If a device cannot be reached or its configuration cannot be retrieved, the script reports an error and continues checking the remaining devices.</p>
+<h4 style="font-family: 'Balsamiq Sans', 'Comic Sans MS', sans-serif; margin: 26px 0 8px 0; font-size: 18px; color: #1F3864; border-bottom: 2px solid #4472C4; padding-bottom: 3px;">Limits</h4>
+<p style="font-family: 'Balsamiq Sans', 'Comic Sans MS', sans-serif; margin: 0 0 12px 0;">This script collects information without changing the device configurations. A REVIEW result means the setting needs investigation against ABC’s approved baseline. It is not a complete security assessment, and a device using centralized AAA would require different authentication checks. I would test the script in a lab before using it across the company’s network.</p>
+<p style="font-family: 'Balsamiq Sans', 'Comic Sans MS', sans-serif; margin: 20px 0 6px 0; font-size: 15px; color: #1F3864; font-weight: bold;">References</p>
+<p style="font-family: 'Balsamiq Sans', 'Comic Sans MS', sans-serif; margin: 0 0 6px 0; font-size: 14px; color: #595959;">Byers, K. (n.d.). <em>Netmiko API documentation</em>. <a href="https://ktbyers.github.io/netmiko/docs/netmiko/index.html" style="color: #2F5496;">https://ktbyers.github.io/netmiko/docs/netmiko/index.html</a></p>
+<p style="font-family: 'Balsamiq Sans', 'Comic Sans MS', sans-serif; margin: 0 0 6px 0; font-size: 14px; color: #595959;">Byers, K. (n.d.). <em>Netmiko examples</em>. <a href="https://github.com/ktbyers/netmiko/blob/develop/EXAMPLES.md" style="color: #2F5496;">https://github.com/ktbyers/netmiko/blob/develop/EXAMPLES.md</a></p>
+<p style="font-family: 'Balsamiq Sans', 'Comic Sans MS', sans-serif; margin: 10px 0 0 0; font-size: 14px; color: #595959;">Figure 1 is my own diagram. The script is my own work built from the Netmiko documentation above.</p>
+</div></div>
+<textarea id="src" readonly aria-label="HTML source">&lt;div style=&quot;font-family: &#x27;Balsamiq Sans&#x27;, &#x27;Comic Sans MS&#x27;, sans-serif; font-size: 16px; line-height: 1.6; color: #262626; max-width: 780px;&quot;&gt;
+&lt;p style=&quot;font-family: &#x27;Balsamiq Sans&#x27;, &#x27;Comic Sans MS&#x27;, sans-serif; margin: 0 0 4px 0; font-size: 14px; color: #2F5496; font-weight: bold;&quot;&gt;Network automation with Python and Netmiko&lt;/p&gt;
+&lt;h3 style=&quot;font-family: &#x27;Balsamiq Sans&#x27;, &#x27;Comic Sans MS&#x27;, sans-serif; margin: 0 0 14px 0; font-size: 26px; color: #1F3864;&quot;&gt;Company ABC Cisco Configuration Checker&lt;/h3&gt;
+&lt;p style=&quot;font-family: &#x27;Balsamiq Sans&#x27;, &#x27;Comic Sans MS&#x27;, sans-serif; margin: 0 0 12px 0;&quot;&gt;For company ABC, I would use Python with the Netmiko library to check the configurations on our Cisco routers and Layer 3 switches. Logging into every device individually would take time, and it would be easy to overlook a setting. A script makes the process more consistent and helps identify devices that need attention.&lt;/p&gt;
+&lt;p style=&quot;font-family: &#x27;Balsamiq Sans&#x27;, &#x27;Comic Sans MS&#x27;, sans-serif; margin: 0 0 12px 0;&quot;&gt;My script connects to each device through SSH, retrieves its running configuration, and checks a basic remote management baseline. It looks for SSH version 2 and checks each VTY line range for SSH access and local authentication. For this example, I am assuming ABC uses local user accounts rather than centralized AAA authentication.&lt;/p&gt;
+&lt;table style=&quot;font-family: &#x27;Balsamiq Sans&#x27;, &#x27;Comic Sans MS&#x27;, sans-serif; border-collapse: separate; border-spacing: 0; width: 100%; margin: 10px 0 4px 0;&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td style=&quot;font-family: &#x27;Balsamiq Sans&#x27;, &#x27;Comic Sans MS&#x27;, sans-serif; width: 17%; padding: 8px 4px; text-align: center; vertical-align: middle; background-color: #D9E2F3; color: #1F3864; border: 2px solid #2F5496;&quot;&gt;&lt;span style=&quot;font-family: &#x27;Balsamiq Sans&#x27;, &#x27;Comic Sans MS&#x27;, sans-serif; font-size: 13px; font-weight: bold;&quot;&gt;Step 1&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-family: &#x27;Balsamiq Sans&#x27;, &#x27;Comic Sans MS&#x27;, sans-serif; font-size: 15px; font-weight: bold;&quot;&gt;Inventory&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-family: &#x27;Balsamiq Sans&#x27;, &#x27;Comic Sans MS&#x27;, sans-serif; font-size: 12px; color: #595959;&quot;&gt;Routers and L3 switches&lt;/span&gt;&lt;/td&gt;&lt;td style=&quot;font-family: &#x27;Balsamiq Sans&#x27;, &#x27;Comic Sans MS&#x27;, sans-serif; width: 3.75%; text-align: center; vertical-align: middle; color: #4472C4; font-size: 20px; font-weight: bold;&quot;&gt;&amp;#8594;&lt;/td&gt;&lt;td style=&quot;font-family: &#x27;Balsamiq Sans&#x27;, &#x27;Comic Sans MS&#x27;, sans-serif; width: 17%; padding: 8px 4px; text-align: center; vertical-align: middle; background-color: #D9E2F3; color: #1F3864; border: 2px solid #2F5496;&quot;&gt;&lt;span style=&quot;font-family: &#x27;Balsamiq Sans&#x27;, &#x27;Comic Sans MS&#x27;, sans-serif; font-size: 13px; font-weight: bold;&quot;&gt;Step 2&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-family: &#x27;Balsamiq Sans&#x27;, &#x27;Comic Sans MS&#x27;, sans-serif; font-size: 15px; font-weight: bold;&quot;&gt;SSH connect&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-family: &#x27;Balsamiq Sans&#x27;, &#x27;Comic Sans MS&#x27;, sans-serif; font-size: 12px; color: #595959;&quot;&gt;Host key verified&lt;/span&gt;&lt;/td&gt;&lt;td style=&quot;font-family: &#x27;Balsamiq Sans&#x27;, &#x27;Comic Sans MS&#x27;, sans-serif; width: 3.75%; text-align: center; vertical-align: middle; color: #4472C4; font-size: 20px; font-weight: bold;&quot;&gt;&amp;#8594;&lt;/td&gt;&lt;td style=&quot;font-family: &#x27;Balsamiq Sans&#x27;, &#x27;Comic Sans MS&#x27;, sans-serif; width: 17%; padding: 8px 4px; text-align: center; vertical-align: middle; background-color: #D9E2F3; color: #1F3864; border: 2px solid #2F5496;&quot;&gt;&lt;span style=&quot;font-family: &#x27;Balsamiq Sans&#x27;, &#x27;Comic Sans MS&#x27;, sans-serif; font-size: 13px; font-weight: bold;&quot;&gt;Step 3&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-family: &#x27;Balsamiq Sans&#x27;, &#x27;Comic Sans MS&#x27;, sans-serif; font-size: 15px; font-weight: bold;&quot;&gt;Pull config&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-family: &#x27;Balsamiq Sans&#x27;, &#x27;Comic Sans MS&#x27;, sans-serif; font-size: 12px; color: #595959;&quot;&gt;show running-config&lt;/span&gt;&lt;/td&gt;&lt;td style=&quot;font-family: &#x27;Balsamiq Sans&#x27;, &#x27;Comic Sans MS&#x27;, sans-serif; width: 3.75%; text-align: center; vertical-align: middle; color: #4472C4; font-size: 20px; font-weight: bold;&quot;&gt;&amp;#8594;&lt;/td&gt;&lt;td style=&quot;font-family: &#x27;Balsamiq Sans&#x27;, &#x27;Comic Sans MS&#x27;, sans-serif; width: 17%; padding: 8px 4px; text-align: center; vertical-align: middle; background-color: #D9E2F3; color: #1F3864; border: 2px solid #2F5496;&quot;&gt;&lt;span style=&quot;font-family: &#x27;Balsamiq Sans&#x27;, &#x27;Comic Sans MS&#x27;, sans-serif; font-size: 13px; font-weight: bold;&quot;&gt;Step 4&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-family: &#x27;Balsamiq Sans&#x27;, &#x27;Comic Sans MS&#x27;, sans-serif; font-size: 15px; font-weight: bold;&quot;&gt;Run checks&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-family: &#x27;Balsamiq Sans&#x27;, &#x27;Comic Sans MS&#x27;, sans-serif; font-size: 12px; color: #595959;&quot;&gt;SSH v2 and every VTY range&lt;/span&gt;&lt;/td&gt;&lt;td style=&quot;font-family: &#x27;Balsamiq Sans&#x27;, &#x27;Comic Sans MS&#x27;, sans-serif; width: 3.75%; text-align: center; vertical-align: middle; color: #4472C4; font-size: 20px; font-weight: bold;&quot;&gt;&amp;#8594;&lt;/td&gt;&lt;td style=&quot;font-family: &#x27;Balsamiq Sans&#x27;, &#x27;Comic Sans MS&#x27;, sans-serif; width: 17%; padding: 8px 4px; text-align: center; vertical-align: middle; background-color: #2F5496; color: #FFFFFF; border: 2px solid #2F5496;&quot;&gt;&lt;span style=&quot;font-family: &#x27;Balsamiq Sans&#x27;, &#x27;Comic Sans MS&#x27;, sans-serif; font-size: 13px; font-weight: bold;&quot;&gt;Step 5&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-family: &#x27;Balsamiq Sans&#x27;, &#x27;Comic Sans MS&#x27;, sans-serif; font-size: 15px; font-weight: bold;&quot;&gt;Report&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-family: &#x27;Balsamiq Sans&#x27;, &#x27;Comic Sans MS&#x27;, sans-serif; font-size: 12px; color: #FFFFFF;&quot;&gt;PASS, REVIEW, or ERROR&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;p style=&quot;font-family: &#x27;Balsamiq Sans&#x27;, &#x27;Comic Sans MS&#x27;, sans-serif; margin: 4px 0 6px 0; font-size: 14px; color: #595959; text-align: center;&quot;&gt;&lt;strong style=&quot;color: #1F3864;&quot;&gt;Figure 1.&lt;/strong&gt; How the script processes each device. Original diagram created for this post.&lt;/p&gt;
+&lt;p style=&quot;font-family: &#x27;Balsamiq Sans&#x27;, &#x27;Comic Sans MS&#x27;, sans-serif; margin: 0 0 14px 0; font-size: 14px; color: #595959; text-align: center;&quot;&gt;If a device fails at any step, the script reports an error and moves on to the next device.&lt;/p&gt;
+&lt;h4 style=&quot;font-family: &#x27;Balsamiq Sans&#x27;, &#x27;Comic Sans MS&#x27;, sans-serif; margin: 26px 0 8px 0; font-size: 18px; color: #1F3864; border-bottom: 2px solid #4472C4; padding-bottom: 3px;&quot;&gt;What the script checks&lt;/h4&gt;
+&lt;table style=&quot;font-family: &#x27;Balsamiq Sans&#x27;, &#x27;Comic Sans MS&#x27;, sans-serif; border-collapse: collapse; width: 100%; margin: 4px 0 16px 0; font-size: 15px;&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td style=&quot;font-family: &#x27;Balsamiq Sans&#x27;, &#x27;Comic Sans MS&#x27;, sans-serif; padding: 7px 12px; width: 42%; background-color: #2F5496; color: #FFFFFF; font-weight: bold; border-bottom: 2px solid #FFFFFF;&quot;&gt;Check&lt;/td&gt;&lt;td style=&quot;font-family: &#x27;Balsamiq Sans&#x27;, &#x27;Comic Sans MS&#x27;, sans-serif; padding: 7px 12px; background-color: #2F5496; color: #FFFFFF; font-weight: bold; border-bottom: 2px solid #FFFFFF;&quot;&gt;PASS when the configuration contains&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;font-family: &#x27;Balsamiq Sans&#x27;, &#x27;Comic Sans MS&#x27;, sans-serif; padding: 7px 12px; width: 42%; background-color: #D9E2F3; color: #1F3864; font-weight: bold; border-bottom: 2px solid #FFFFFF;&quot;&gt;SSH version&lt;/td&gt;&lt;td style=&quot;font-family: &#x27;Balsamiq Sans&#x27;, &#x27;Comic Sans MS&#x27;, sans-serif; padding: 7px 12px; background-color: #F2F2F2; border-bottom: 2px solid #FFFFFF;&quot;&gt;&lt;span style=&quot;color: #2F5496; font-weight: bold;&quot;&gt;ip ssh version 2&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;font-family: &#x27;Balsamiq Sans&#x27;, &#x27;Comic Sans MS&#x27;, sans-serif; padding: 7px 12px; width: 42%; background-color: #D9E2F3; color: #1F3864; font-weight: bold; border-bottom: 2px solid #FFFFFF;&quot;&gt;VTY configuration&lt;/td&gt;&lt;td style=&quot;font-family: &#x27;Balsamiq Sans&#x27;, &#x27;Comic Sans MS&#x27;, sans-serif; padding: 7px 12px; background-color: #F2F2F2; border-bottom: 2px solid #FFFFFF;&quot;&gt;At least one &lt;span style=&quot;color: #2F5496; font-weight: bold;&quot;&gt;line vty&lt;/span&gt; section&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;font-family: &#x27;Balsamiq Sans&#x27;, &#x27;Comic Sans MS&#x27;, sans-serif; padding: 7px 12px; width: 42%; background-color: #D9E2F3; color: #1F3864; font-weight: bold; border-bottom: 2px solid #FFFFFF;&quot;&gt;Each VTY range: SSH only&lt;/td&gt;&lt;td style=&quot;font-family: &#x27;Balsamiq Sans&#x27;, &#x27;Comic Sans MS&#x27;, sans-serif; padding: 7px 12px; background-color: #F2F2F2; border-bottom: 2px solid #FFFFFF;&quot;&gt;&lt;span style=&quot;color: #2F5496; font-weight: bold;&quot;&gt;transport input ssh&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;font-family: &#x27;Balsamiq Sans&#x27;, &#x27;Comic Sans MS&#x27;, sans-serif; padding: 7px 12px; width: 42%; background-color: #D9E2F3; color: #1F3864; font-weight: bold;&quot;&gt;Each VTY range: local authentication&lt;/td&gt;&lt;td style=&quot;font-family: &#x27;Balsamiq Sans&#x27;, &#x27;Comic Sans MS&#x27;, sans-serif; padding: 7px 12px; background-color: #F2F2F2;&quot;&gt;&lt;span style=&quot;color: #2F5496; font-weight: bold;&quot;&gt;login local&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;h4 style=&quot;font-family: &#x27;Balsamiq Sans&#x27;, &#x27;Comic Sans MS&#x27;, sans-serif; margin: 26px 0 8px 0; font-size: 18px; color: #1F3864; border-bottom: 2px solid #4472C4; padding-bottom: 3px;&quot;&gt;The script&lt;/h4&gt;
+&lt;pre style=&quot;font-family: &#x27;Balsamiq Sans&#x27;, &#x27;Comic Sans MS&#x27;, sans-serif; background-color: #F2F2F2; border-left: 5px solid #4472C4; padding: 12px 16px; margin: 6px 0 16px 0; font-size: 14px; line-height: 1.5; color: #262626; white-space: pre; overflow-x: auto; tab-size: 4;&quot;&gt;&lt;span style=&quot;color: #2F5496; font-weight: bold;&quot;&gt;import&lt;/span&gt; re
+&lt;span style=&quot;color: #2F5496; font-weight: bold;&quot;&gt;from&lt;/span&gt; getpass &lt;span style=&quot;color: #2F5496; font-weight: bold;&quot;&gt;import&lt;/span&gt; getpass
+&lt;span style=&quot;color: #2F5496; font-weight: bold;&quot;&gt;from&lt;/span&gt; netmiko &lt;span style=&quot;color: #2F5496; font-weight: bold;&quot;&gt;import&lt;/span&gt; ConnectHandler
+
+&lt;span style=&quot;color: #548235; font-style: italic;&quot;&gt;# Example inventory: replace with all ABC routers and Layer 3 switches.&lt;/span&gt;
+devices = {
+    &lt;span style=&quot;color: #C55A11;&quot;&gt;&quot;SEA-R01&quot;&lt;/span&gt;: &lt;span style=&quot;color: #C55A11;&quot;&gt;&quot;192.168.16.1&quot;&lt;/span&gt;,
+    &lt;span style=&quot;color: #C55A11;&quot;&gt;&quot;SEA-SW01&quot;&lt;/span&gt;: &lt;span style=&quot;color: #C55A11;&quot;&gt;&quot;192.168.16.2&quot;&lt;/span&gt;,
+    &lt;span style=&quot;color: #C55A11;&quot;&gt;&quot;SEA-SW02&quot;&lt;/span&gt;: &lt;span style=&quot;color: #C55A11;&quot;&gt;&quot;192.168.16.3&quot;&lt;/span&gt;,
+}
+
+username = &lt;span style=&quot;color: #7030A0;&quot;&gt;input&lt;/span&gt;(&lt;span style=&quot;color: #C55A11;&quot;&gt;&quot;Username: &quot;&lt;/span&gt;)
+password = getpass(&lt;span style=&quot;color: #C55A11;&quot;&gt;&quot;SSH password: &quot;&lt;/span&gt;)
+enable_secret = getpass(&lt;span style=&quot;color: #C55A11;&quot;&gt;&quot;Enable secret, if required: &quot;&lt;/span&gt;)
+
+&lt;span style=&quot;color: #2F5496; font-weight: bold;&quot;&gt;for&lt;/span&gt; name, address &lt;span style=&quot;color: #2F5496; font-weight: bold;&quot;&gt;in&lt;/span&gt; devices.items():
+    &lt;span style=&quot;color: #7030A0;&quot;&gt;print&lt;/span&gt;(&lt;span style=&quot;color: #C55A11;&quot;&gt;f&quot;\n--- {name} ({address}) ---&quot;&lt;/span&gt;)
+
+    &lt;span style=&quot;color: #2F5496; font-weight: bold;&quot;&gt;try&lt;/span&gt;:
+        &lt;span style=&quot;color: #2F5496; font-weight: bold;&quot;&gt;with&lt;/span&gt; ConnectHandler(
+            device_type=&lt;span style=&quot;color: #C55A11;&quot;&gt;&quot;cisco_ios&quot;&lt;/span&gt;,
+            host=address,
+            username=username,
+            password=password,
+            secret=enable_secret,
+            ssh_strict=&lt;span style=&quot;color: #2F5496; font-weight: bold;&quot;&gt;True&lt;/span&gt;,
+            system_host_keys=&lt;span style=&quot;color: #2F5496; font-weight: bold;&quot;&gt;True&lt;/span&gt;,
+            conn_timeout=10,
+        ) &lt;span style=&quot;color: #2F5496; font-weight: bold;&quot;&gt;as&lt;/span&gt; connection:
+            &lt;span style=&quot;color: #2F5496; font-weight: bold;&quot;&gt;if&lt;/span&gt; &lt;span style=&quot;color: #2F5496; font-weight: bold;&quot;&gt;not&lt;/span&gt; connection.check_enable_mode():
+                connection.enable()
+
+            config = connection.send_command(
+                &lt;span style=&quot;color: #C55A11;&quot;&gt;&quot;show running-config&quot;&lt;/span&gt;, read_timeout=30
+            )
+
+        &lt;span style=&quot;color: #2F5496; font-weight: bold;&quot;&gt;if&lt;/span&gt; &lt;span style=&quot;color: #2F5496; font-weight: bold;&quot;&gt;not&lt;/span&gt; config.strip() &lt;span style=&quot;color: #2F5496; font-weight: bold;&quot;&gt;or&lt;/span&gt; re.search(&lt;span style=&quot;color: #C55A11;&quot;&gt;r&quot;^%.*&quot;&lt;/span&gt;, config, re.M):
+            &lt;span style=&quot;color: #2F5496; font-weight: bold;&quot;&gt;raise&lt;/span&gt; &lt;span style=&quot;color: #7030A0;&quot;&gt;ValueError&lt;/span&gt;(&lt;span style=&quot;color: #C55A11;&quot;&gt;&quot;Could not retrieve a valid configuration.&quot;&lt;/span&gt;)
+
+        checks = {
+            &lt;span style=&quot;color: #C55A11;&quot;&gt;&quot;SSH version 2&quot;&lt;/span&gt;: &lt;span style=&quot;color: #7030A0;&quot;&gt;bool&lt;/span&gt;(
+                re.search(&lt;span style=&quot;color: #C55A11;&quot;&gt;r&quot;^ip ssh version 2\s*$&quot;&lt;/span&gt;, config, re.M)
+            )
+        }
+
+        vty_sections = &lt;span style=&quot;color: #7030A0;&quot;&gt;list&lt;/span&gt;(re.finditer(
+            &lt;span style=&quot;color: #C55A11;&quot;&gt;r&quot;^(line vty[^\n]*)\n((?:[ \t]+[^\n]*\n?)*)&quot;&lt;/span&gt;,
+            config,
+            re.M,
+        ))
+
+        checks[&lt;span style=&quot;color: #C55A11;&quot;&gt;&quot;VTY configuration found&quot;&lt;/span&gt;] = &lt;span style=&quot;color: #7030A0;&quot;&gt;bool&lt;/span&gt;(vty_sections)
+
+        &lt;span style=&quot;color: #2F5496; font-weight: bold;&quot;&gt;for&lt;/span&gt; section &lt;span style=&quot;color: #2F5496; font-weight: bold;&quot;&gt;in&lt;/span&gt; vty_sections:
+            label, settings = section.groups()
+            commands = {line.strip() &lt;span style=&quot;color: #2F5496; font-weight: bold;&quot;&gt;for&lt;/span&gt; line &lt;span style=&quot;color: #2F5496; font-weight: bold;&quot;&gt;in&lt;/span&gt; settings.splitlines()}
+            checks[&lt;span style=&quot;color: #C55A11;&quot;&gt;f&quot;{label}: SSH only&quot;&lt;/span&gt;] = (
+                &lt;span style=&quot;color: #C55A11;&quot;&gt;&quot;transport input ssh&quot;&lt;/span&gt; &lt;span style=&quot;color: #2F5496; font-weight: bold;&quot;&gt;in&lt;/span&gt; commands
+            )
+            checks[&lt;span style=&quot;color: #C55A11;&quot;&gt;f&quot;{label}: local authentication&quot;&lt;/span&gt;] = (
+                &lt;span style=&quot;color: #C55A11;&quot;&gt;&quot;login local&quot;&lt;/span&gt; &lt;span style=&quot;color: #2F5496; font-weight: bold;&quot;&gt;in&lt;/span&gt; commands
+            )
+
+        &lt;span style=&quot;color: #2F5496; font-weight: bold;&quot;&gt;for&lt;/span&gt; setting, passed &lt;span style=&quot;color: #2F5496; font-weight: bold;&quot;&gt;in&lt;/span&gt; checks.items():
+            status = &lt;span style=&quot;color: #C55A11;&quot;&gt;&quot;PASS&quot;&lt;/span&gt; &lt;span style=&quot;color: #2F5496; font-weight: bold;&quot;&gt;if&lt;/span&gt; passed &lt;span style=&quot;color: #2F5496; font-weight: bold;&quot;&gt;else&lt;/span&gt; &lt;span style=&quot;color: #C55A11;&quot;&gt;&quot;REVIEW&quot;&lt;/span&gt;
+            &lt;span style=&quot;color: #7030A0;&quot;&gt;print&lt;/span&gt;(&lt;span style=&quot;color: #C55A11;&quot;&gt;f&quot;{status}: {setting}&quot;&lt;/span&gt;)
+
+    &lt;span style=&quot;color: #2F5496; font-weight: bold;&quot;&gt;except&lt;/span&gt; &lt;span style=&quot;color: #7030A0;&quot;&gt;Exception&lt;/span&gt; &lt;span style=&quot;color: #2F5496; font-weight: bold;&quot;&gt;as&lt;/span&gt; error:
+        &lt;span style=&quot;color: #7030A0;&quot;&gt;print&lt;/span&gt;(&lt;span style=&quot;color: #C55A11;&quot;&gt;f&quot;ERROR: Device check incomplete: {error}&quot;&lt;/span&gt;)&lt;/pre&gt;
+&lt;h4 style=&quot;font-family: &#x27;Balsamiq Sans&#x27;, &#x27;Comic Sans MS&#x27;, sans-serif; margin: 26px 0 8px 0; font-size: 18px; color: #1F3864; border-bottom: 2px solid #4472C4; padding-bottom: 3px;&quot;&gt;Running it&lt;/h4&gt;
+&lt;p style=&quot;font-family: &#x27;Balsamiq Sans&#x27;, &#x27;Comic Sans MS&#x27;, sans-serif; margin: 0 0 12px 0;&quot;&gt;Before running the script, I would install Netmiko using &lt;span style=&quot;color: #2F5496; font-weight: bold;&quot;&gt;python3 -m pip install netmiko&lt;/span&gt; and replace the example inventory with ABC’s actual device addresses. Each device would need SSH enabled, an authorized account with permission to view the running configuration, and a verified host key saved in my &lt;span style=&quot;color: #2F5496; font-weight: bold;&quot;&gt;known_hosts&lt;/span&gt; file. The script prompts for passwords instead of storing them in the code.&lt;/p&gt;
+&lt;h4 style=&quot;font-family: &#x27;Balsamiq Sans&#x27;, &#x27;Comic Sans MS&#x27;, sans-serif; margin: 26px 0 8px 0; font-size: 18px; color: #1F3864; border-bottom: 2px solid #4472C4; padding-bottom: 3px;&quot;&gt;Reading the results&lt;/h4&gt;
+&lt;p style=&quot;font-family: &#x27;Balsamiq Sans&#x27;, &#x27;Comic Sans MS&#x27;, sans-serif; margin: 0 0 12px 0;&quot;&gt;Each setting receives a PASS or REVIEW result. Checking every VTY section matters because one range could allow SSH while another still permits other access methods. If a device cannot be reached or its configuration cannot be retrieved, the script reports an error and continues checking the remaining devices.&lt;/p&gt;
+&lt;h4 style=&quot;font-family: &#x27;Balsamiq Sans&#x27;, &#x27;Comic Sans MS&#x27;, sans-serif; margin: 26px 0 8px 0; font-size: 18px; color: #1F3864; border-bottom: 2px solid #4472C4; padding-bottom: 3px;&quot;&gt;Limits&lt;/h4&gt;
+&lt;p style=&quot;font-family: &#x27;Balsamiq Sans&#x27;, &#x27;Comic Sans MS&#x27;, sans-serif; margin: 0 0 12px 0;&quot;&gt;This script collects information without changing the device configurations. A REVIEW result means the setting needs investigation against ABC’s approved baseline. It is not a complete security assessment, and a device using centralized AAA would require different authentication checks. I would test the script in a lab before using it across the company’s network.&lt;/p&gt;
+&lt;p style=&quot;font-family: &#x27;Balsamiq Sans&#x27;, &#x27;Comic Sans MS&#x27;, sans-serif; margin: 20px 0 6px 0; font-size: 15px; color: #1F3864; font-weight: bold;&quot;&gt;References&lt;/p&gt;
+&lt;p style=&quot;font-family: &#x27;Balsamiq Sans&#x27;, &#x27;Comic Sans MS&#x27;, sans-serif; margin: 0 0 6px 0; font-size: 14px; color: #595959;&quot;&gt;Byers, K. (n.d.). &lt;em&gt;Netmiko API documentation&lt;/em&gt;. &lt;a href=&quot;https://ktbyers.github.io/netmiko/docs/netmiko/index.html&quot; style=&quot;color: #2F5496;&quot;&gt;https://ktbyers.github.io/netmiko/docs/netmiko/index.html&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot;font-family: &#x27;Balsamiq Sans&#x27;, &#x27;Comic Sans MS&#x27;, sans-serif; margin: 0 0 6px 0; font-size: 14px; color: #595959;&quot;&gt;Byers, K. (n.d.). &lt;em&gt;Netmiko examples&lt;/em&gt;. &lt;a href=&quot;https://github.com/ktbyers/netmiko/blob/develop/EXAMPLES.md&quot; style=&quot;color: #2F5496;&quot;&gt;https://github.com/ktbyers/netmiko/blob/develop/EXAMPLES.md&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot;font-family: &#x27;Balsamiq Sans&#x27;, &#x27;Comic Sans MS&#x27;, sans-serif; margin: 10px 0 0 0; font-size: 14px; color: #595959;&quot;&gt;Figure 1 is my own diagram. The script is my own work built from the Netmiko documentation above.&lt;/p&gt;
+&lt;/div&gt;</textarea>
+<div class="how"><strong>Pasting into Canvas</strong><ol>
+<li>Most reliable: click Copy HTML source, open the reply box, click the <strong>&lt;/&gt;</strong> HTML editor icon at the bottom right, paste, then switch back to the normal view.</li>
+<li>Quicker: click Copy formatted post and paste straight into the normal reply box. Canvas usually keeps the colors and tables this way.</li>
+</ol></div>
+</main>
+<script>
+const st=document.getElementById('status'),src=document.getElementById('src');
+const say=t=>{st.textContent=t;setTimeout(()=>st.textContent='',3500)};
+document.getElementById('copyHtml').onclick=async()=>{
+ try{await navigator.clipboard.writeText(src.value);say('HTML copied')}
+ catch(e){src.classList.add('show');src.focus();src.select();say('Press Ctrl+C or Cmd+C to copy the selected HTML')}
+};
+document.getElementById('copyRich').onclick=async()=>{
+ const h=document.getElementById('post').innerHTML;
+ try{await navigator.clipboard.write([new ClipboardItem({'text/html':new Blob([h],{type:'text/html'}),'text/plain':new Blob([document.getElementById('post').innerText],{type:'text/plain'})})]);say('Formatted post copied')}
+ catch(e){const r=document.createRange();r.selectNodeContents(document.getElementById('post'));const s=getSelection();s.removeAllRanges();s.addRange(r);say('Press Ctrl+C or Cmd+C to copy the selected post')}
+};
+</script></body></html>
